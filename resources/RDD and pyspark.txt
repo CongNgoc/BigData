@@ -1,0 +1,40 @@
+
+Đọc file
+ RDDs are created by starting with a file in the Hadoop file system (or any other Hadoop-supported file system),
+
+
+To run Spark applications in Python without pip installing PySpark, use the bin/spark-submit script located in the Spark directory. This script will load Spark’s Java/Scala libraries and allow you to submit applications to a cluster. You can also use bin/pyspark to launch an interactive Python shell.
+
+
+PySpark requires the same minor version of Python in both driver and workers. It uses the default python version in PATH, you can specify which version of Python you want to use by PYSPARK_PYTHON, for example:
+
+$ PYSPARK_PYTHON=python3.4 bin/pyspark
+$ PYSPARK_PYTHON=/opt/pypy-2.5/bin/pypy bin/spark-submit examples/src/main/python/pi.py
+
+
+start slave
+./start-slave.sh -m 512M spark://congngoc2105-Vostro-3558:7077
+
+
+
+https://spark.apache.org/docs/2.1.0/api/python/pyspark.sql.html?highlight=sparksession
+# spark = SparkSession.builder \
+#     .master("local") \
+#     .appName("Word Count") \
+#     .config("spark.some.config.option", "some-value") \
+#     .getOrCreate()
+
+Parameters:	master – a url for spark master
+getOrCreate()
+	Gets an existing SparkSession or, if there is no existing one, creates a new one based on the options set in this builder.
+
+
+
+export PYSPARK_PYTHON=/usr/bin/python
+export PYSPARK_DRIVER_PYTHON=/usr/bin/python
+
+
+Print Row value:
+Row(value='"[{\'cast_id\': 2, \'character\': \'\', \'credit_id\': \'52fe4ea59251416c7515d7d5\', \'gender\': 2, \'id\': 544742, \'name\': \'Iwan Mosschuchin\', \'order\': 0, \'profile_path\': None}, {\'cast_id\': 3, \'character\': \'\', \'credit_id\': \'52fe4ea59251416c7515d7d9\', \'gender\': 1, \'id\': 1090923, \'name\': \'Nathalie Lissenko\', \'order\': 1, \'profile_path\': None}, {\'cast_id\': 4, \'character\': \'\', \'credit_id\': \'52fe4ea59251416c7515d7dd\', \'gender\': 2, \'id\': 1136422, \'name\': \'Pavel Pavlov\', \'order\': 2, \'profile_path\': None}, {\'cast_id\': 5, \'character\': \'\', \'credit_id\': \'52fe4ea59251416c7515d7e1\', \'gender\': 0, \'id\': 1261758, \'name\': \'Aleksandr Chabrov\', \'order\': 3, \'profile_path\': None}, {\'cast_id\': 6, \'character\': \'\', \'credit_id\': \'52fe4ea59251416c7515d7e5\', \'gender\': 1, \'id\': 29199, \'name\': \'Vera Orlova\', \'order\': 4, \'profile_path\': \'/n1NXVGNzNxtqsMWxLT1h8GO8Kpi.jpg\'}]","[{\'credit_id\': \'533bccebc3a36844cf0011a7\', \'department\': \'Directing\', \'gender\': 0, \'id\': 1085341, \'job\': \'Director\', \'name\': \'Yakov Protazanov\', \'profile_path\': \'/yyjbGdCs2ZN6IlZNCfmBWyuRDlt.jpg\'}, {\'credit_id\': \'58ebbc26925141281908aa0a\', \'department\': \'Production\', \'gender\': 2, \'id\': 1195656, \'job\': \'Producer\', \'name\': \'Joseph N. Ermolieff\', \'profile_path\': None}]",227506')
+
+
